@@ -1,4 +1,4 @@
-# E-sport Manager · Groupe <n°>
+# E-sport Manager · Groupe <n°1>
 
 > Projet collaboratif PP3 · DI 1re année · CESI Rouen · 2026-2027
 
@@ -9,7 +9,7 @@
 ## L'équipe
 
 | Membre | Rôle | Compte GitHub |
-| --- | --- | --- |
+| Thibault | Base de donnée | https://github.com/TIBO-CHO |
 | | | |
 
 ## Lancer le projet
