@@ -9,7 +9,9 @@
 ## L'équipe
 
 | Membre | Rôle | Compte GitHub |
+
 | Thibault | Base de donnée | https://github.com/TIBO-CHO |
+
 | | | |
 
 ## Lancer le projet
