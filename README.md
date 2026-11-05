@@ -1,35 +1,34 @@
-# E-sport Manager · Groupe <n°1>
+-Jeux de Volley-Ball en Pixel Art
+-6V6
 
-> Projet collaboratif PP3 · DI 1re année · CESI Rouen · 2026-2027
+-Phase D'attaque : 
+- 3 Passes
+- Smash
 
-## Le projet
+-Phase de Def : Réception
 
-<!-- En 3 lignes : ce que fait l'application, pour qui, et le nom de votre structure e-sport. -->
+-En 21 points les match
 
-## L'équipe
+-Stat joueur Fixe : 
+- Attaque
+- Def
+- Passe
+- Santé/Endurance (stat sur une saison)
 
-| Membre | Rôle | Compte GitHub |
+- Stat de Coach qui donne des bonus/malus au joueur .
+- Joueur et Coach sous contract (Mi saison pour joueur/ saison entière pour coach)
 
+<<<<<<< HEAD
 | Thibault | Base de donnée | https://github.com/TIBO-CHO |
 | Justin |
+=======
+- Coach et joueur Virable mais malus monétaire
+>>>>>>> 76b780505a2499a452b363769e6b4e7cf3c30111
 
-| | | |
+- Système de transfer
+- Système de Dopage, chantage
+- Championnat évolutif
+- Gestion de calendrier (Activité, entrainement, pause)
 
-## Lancer le projet
 
-<!-- Les commandes pour compiler et lancer l'application (à compléter quand le code arrive). -->
-
-## Comment on travaille
-
-- `main` est protégée : on n'y pousse jamais directement.
-- Une issue = une branche = une pull request. La branche porte le numéro de l'issue : `3-logigramme`.
-- Chaque pull request est relue et approuvée par **un autre membre** avant d'être fusionnée.
-- Après chaque fusion : `git switch main` puis `git pull`.
-
-## Documents
-
-| Document | Fichier |
-| --- | --- |
-| Logigramme | `docs/` |
-| MCD | `docs/` |
-| Maquettes | `docs/` |
+- Outils = WSL, SQLlite
