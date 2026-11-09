@@ -23,4 +23,4 @@
 - Gestion de calendrier (Activité, entrainement, pause)
 
 
-- Outils = WSL, SQLlite
+- Outils = WPF, SQLlite
