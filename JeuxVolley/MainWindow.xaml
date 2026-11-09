@@ -1,12 +1,55 @@
-﻿<Window x:Class="JeuxVolley.MainWindow"
+﻿<Window x:Class="MatchWpf.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:JeuxVolley"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Variation du Match" Height="500" Width="650"
+        Background="#0F172A" Foreground="White">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+        <!-- Tableau d'affichage du Score -->
+        <Border Grid.Row="0" Background="#1E293B" CornerRadius="10" Padding="15" Margin="0,0,0,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                    <TextBlock Text="JOUEUR" FontSize="14" Foreground="#94A3B8" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding ScoreJoueur}" FontSize="36" FontWeight="Bold" Foreground="#38BDF8" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <TextBlock Grid.Column="1" Text="VS" FontSize="20" FontWeight="Bold" Foreground="#64748B" VerticalAlignment="Center"/>
+
+                <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+                    <TextBlock Text="IA" FontSize="14" Foreground="#94A3B8" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding ScoreIA}" FontSize="36" FontWeight="Bold" Foreground="#F43F5E" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Console de texte (remplace les Console.WriteLine) -->
+        <Border Grid.Row="1" Background="#020617" CornerRadius="8" Padding="15" BorderBrush="#334155" BorderThickness="1">
+            <ScrollViewer x:Name="ScrollLogs" VerticalScrollBarVisibility="Auto">
+                <TextBlock Text="{Binding LogsText}" FontSize="15" FontFamily="Consolas" Foreground="#F8FAFC" TextWrapping="Wrap"/>
+            </ScrollViewer>
+        </Border>
+
+        <!-- Bouton d'action -->
+        <Button Grid.Row="2" Content="{Binding BoutonTexte}" Command="{Binding DemarrerMatchCommand}" 
+                IsEnabled="{Binding CanStartMatch}" Height="45" Margin="0,20,0,0" 
+                Background="#0284C7" Foreground="White" FontSize="16" FontWeight="Bold"
+                BorderThickness="0" Cursor="Hand">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="8"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>
