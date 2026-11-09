@@ -1,6 +1,40 @@
 ﻿Console.WriteLine("Variation du match");
 Console.WriteLine("Vous êtes sur le point de lancer un match");
+Thread.Sleep(2000);
+Console.Clear();
 
+while (true)
+{
+    Console.WriteLine("Comment voulez vous jouer ? (classique / rapide)");
+    string? type = Console.ReadLine()?.Trim().ToLower();
+    if (type == "classique")
+    {
+        Console.WriteLine("Ah c'est bien tu es vrai joueur");
+        Thread.Sleep(2000);
+        break;
+    }
+    else if (type == "rapide")
+    {
+        int triche = Random.Shared.Next(1, 101);
+        if (triche <= 50)
+        {
+            Console.WriteLine("Vous avez gagné !! (en trichant)");
+            Thread.Sleep(2000);
+        } 
+        else
+        {
+           Console.WriteLine("Vous avez perdu en trichant (La honte)");
+           Thread.Sleep(2000);
+        }
+        return;
+    }
+    else
+    {
+        Console.WriteLine("Qu'est ce que tu raconte ?");
+        Thread.Sleep(2000);
+    }
+}
+Console.Clear();
 while (true)
 {
     Console.WriteLine("Êtes-vous prêts ? (oui / non)");
