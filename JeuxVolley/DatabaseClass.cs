@@ -7,7 +7,7 @@ public class DatabaseClass
 {
     public static SqliteConnection ConnectionDB()
     {
-        SqliteConnection databaseConnection = new SqliteConnection("Data Source=DatabaseTEST.db");
+        SqliteConnection databaseConnection = new SqliteConnection("DataSource=DatabaseTEST.db");
         return databaseConnection;
     }
 
@@ -159,4 +159,52 @@ public class DatabaseClass
         tableCmd.ExecuteNonQuery();
         databaseConnection.Close();
     }
+    public static void ReadAllValueFromPartie(SqliteConnection databaseConnection)
+    {
+        string SQLiteQuery = "SELECT * FROM PARTIE";
+        databaseConnection.Open();
+        using (SqliteCommand databaseCommand = new SqliteCommand(SQLiteQuery, databaseConnection))
+        {
+            using(SqliteDataReader databaseReader = databaseCommand.ExecuteReader())
+            {
+                while (databaseReader.Read())
+                {
+                    int id = Convert.ToInt32(databaseReader["id"]);
+                    string nom = databaseReader["nom"].ToString();
+
+                    // Ici indiquer quoi faire avec chaque ligne de la table PARTIE.
+                    Console.WriteLine($"id = {id}   nom = {nom}"); // Exemple
+                }
+                    
+            }
+        }
+        databaseConnection.Close();
+    }
+
+    public static void DeleteValueFromTable(SqliteConnection databaseConnection, string table, int id)
+    {
+        databaseConnection.Open();
+        string SQLiteQuery = $"DELETE FROM {table} WHERE id = {id}";
+        using(SqliteCommand databaseCommand = new SqliteCommand(SQLiteQuery, databaseConnection))
+        {
+            databaseCommand.Parameters.AddWithValue("@id", id);
+            databaseCommand.ExecuteNonQuery();
+        }
+        databaseConnection.Close();
+    }
+
+    public static void UdpdateStringValueFromTable(SqliteConnection databaseConnection, string table, string colonne, int id, string newValue)
+    {
+        databaseConnection.Open();
+        string SQLiteQuery = $"UPDATE {table} SET {colonne} = @{colonne} WHERE id = {id}";
+        using (SqliteCommand databaseCommand = new SqliteCommand(SQLiteQuery, databaseConnection))
+        {
+            databaseCommand.Parameters.AddWithValue("@id", id);
+            databaseCommand.Parameters.AddWithValue($"@{colonne}", newValue);
+            databaseCommand.ExecuteNonQuery();
+        }
+        databaseConnection.Close();
+    }
+
+
 }
