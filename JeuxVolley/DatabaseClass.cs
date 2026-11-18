@@ -159,9 +159,10 @@ public class DatabaseClass
         tableCmd.ExecuteNonQuery();
         databaseConnection.Close();
     }
-    public static void ReadAllValueFromPartie(SqliteConnection databaseConnection)
+    public static void ReadAllValueFromTable(SqliteConnection databaseConnection, string nomTable)
     {
-        string SQLiteQuery = "SELECT * FROM PARTIE";
+        string nomTableMajuscule = nomTable.ToUpper();
+        string SQLiteQuery = $"SELECT * FROM {nomTableMajuscule}";
         databaseConnection.Open();
         using (SqliteCommand databaseCommand = new SqliteCommand(SQLiteQuery, databaseConnection))
         {
@@ -172,8 +173,7 @@ public class DatabaseClass
                     int id = Convert.ToInt32(databaseReader["id"]);
                     string nom = databaseReader["nom"].ToString();
 
-                    // Ici indiquer quoi faire avec chaque ligne de la table PARTIE.
-                    Console.WriteLine($"id = {id}   nom = {nom}"); // Exemple
+                    // Faut que je trouve un moyen systematique afin de renvoyer toutes les data dans un format facilement utilisable
                 }
                     
             }
