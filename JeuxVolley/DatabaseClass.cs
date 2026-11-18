@@ -159,10 +159,10 @@ public class DatabaseClass
         tableCmd.ExecuteNonQuery();
         databaseConnection.Close();
     }
-    public static void ReadAllValueFromTable(SqliteConnection databaseConnection, string nomTable)
+    public static List<Dictionary<string,object?>> ReadAllValueFromTable(SqliteConnection databaseConnection, string nomTable)
     {
-        string nomTableMajuscule = nomTable.ToUpper();
-        string SQLiteQuery = $"SELECT * FROM {nomTableMajuscule}";
+        var listeObjetDansTable = new List<Dictionary<string, object?>>();
+        string SQLiteQuery = $"SELECT * FROM {nomTable}";
         databaseConnection.Open();
         using (SqliteCommand databaseCommand = new SqliteCommand(SQLiteQuery, databaseConnection))
         {
@@ -170,15 +170,20 @@ public class DatabaseClass
             {
                 while (databaseReader.Read())
                 {
-                    int id = Convert.ToInt32(databaseReader["id"]);
-                    string nom = databaseReader["nom"].ToString();
+                    var ligneDeLaTable = new Dictionary<string, object?>();
 
-                    // Faut que je trouve un moyen systematique afin de renvoyer toutes les data dans un format facilement utilisable
+                    for (int i = 0; i < databaseReader.FieldCount; i++)
+                    {
+                        ligneDeLaTable[databaseReader.GetName(i)] = databaseReader.IsDBNull(i) ? null : databaseReader.GetValue(i);
+                    }
+
+                    listeObjetDansTable.Add(ligneDeLaTable);
                 }
                     
             }
         }
         databaseConnection.Close();
+        return listeObjetDansTable;
     }
 
     public static void DeleteValueFromTable(SqliteConnection databaseConnection, string table, int id)
