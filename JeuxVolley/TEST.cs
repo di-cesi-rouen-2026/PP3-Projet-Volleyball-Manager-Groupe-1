@@ -19,7 +19,12 @@ namespace JeuxVolley
             DatabaseClass.InsertValueIntoMatch(connection, date1, 1, 2, 60, 25, 1, 2, 1);
             DatabaseClass.DeleteValueFromTable(connection, "PARTIE", 2);
             DatabaseClass.UdpdateStringValueFromTable(connection, "PARTIE", "nom", 1, "Nom nouveau");
-            DatabaseClass.ReadAllValueFromPartie(connection);
+            List<Dictionary<string, object?>> donnéeDansPartie = DatabaseClass.ReadAllValueFromTable(connection,"Partie");
+
+            foreach (Dictionary<string, object?> ligneDansTable in donnéeDansPartie)
+            {
+                Console.WriteLine($"{ligneDansTable["id"]}");
+            } ; 
         }
     }
 }
