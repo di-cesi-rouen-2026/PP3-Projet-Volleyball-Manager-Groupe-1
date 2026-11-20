@@ -5,13 +5,10 @@ using Microsoft.VisualBasic;
 
 public class DatabaseClass
 {
-    public static SqliteConnection ConnectionDB()
-    {
-        SqliteConnection databaseConnection = new SqliteConnection("DataSource=DatabaseTEST.db");
-        return databaseConnection;
-    }
+    public static SqliteConnection databaseConnection = new SqliteConnection("DataSource=DatabaseTEST.db");
 
-    public static void CreateDatabase(SqliteConnection databaseConnection)
+
+    public static void CreateDatabase()
     {
         databaseConnection.Open();
         var tableCmd = databaseConnection.CreateCommand();
@@ -68,7 +65,7 @@ public class DatabaseClass
         databaseConnection.Close();
     }
 
-    public static void InsertValueIntoEquipe(SqliteConnection databaseConnection, string nom, string villeOrigine, int estRival)
+    public static void InsertValueIntoEquipe(string nom, string villeOrigine, int estRival)
     {
         databaseConnection.Open();
         var tableCmd = databaseConnection.CreateCommand();
@@ -81,7 +78,7 @@ public class DatabaseClass
         tableCmd.ExecuteNonQuery();
         databaseConnection.Close();
     }
-    public static void InsertValueIntoJoueur(SqliteConnection databaseConnection, string nom, string prenom, int attaque, int defense, int passe, int energie, int prix, int note, int idEquipe = 1, int blessure = 0)
+    public static void InsertValueIntoJoueur(string nom, string prenom, int attaque, int defense, int passe, int energie, int prix, int note, int idEquipe = 1, int blessure = 0)
     {
         databaseConnection.Open();
         var tableCmd = databaseConnection.CreateCommand();
@@ -101,7 +98,7 @@ public class DatabaseClass
         tableCmd.ExecuteNonQuery();
         databaseConnection.Close();
     }
-    public static void InsertValueIntoCoach(SqliteConnection databaseConnection, string nom, string prenom, int boostAttaque, int boostDefense, int boostPasse, int prix, int idEquipe = 1)
+    public static void InsertValueIntoCoach(string nom, string prenom, int boostAttaque, int boostDefense, int boostPasse, int prix, int idEquipe = 1)
     {
         databaseConnection.Open();
         var tableCmd = databaseConnection.CreateCommand();
@@ -118,7 +115,7 @@ public class DatabaseClass
         tableCmd.ExecuteNonQuery();
         databaseConnection.Close();
     }
-    public static void InsertValueIntoMatch(SqliteConnection databaseConnection, DateOnly date, int idEquipeDomicile, int idEquipeExterieur, int scoreEquipe1, int scoreEquipe2, int vainqueur, int perdant, int idTournoi)
+    public static void InsertValueIntoMatch(DateOnly date, int idEquipeDomicile, int idEquipeExterieur, int scoreEquipe1, int scoreEquipe2, int vainqueur, int perdant, int idTournoi)
     {
         databaseConnection.Open();
         var tableCmd = databaseConnection.CreateCommand();
@@ -136,7 +133,7 @@ public class DatabaseClass
         tableCmd.ExecuteNonQuery();
         databaseConnection.Close();
     }
-    public static void InsertValueIntoTournoi(SqliteConnection databaseConnection, string division, int idPartie)
+    public static void InsertValueIntoTournoi(string division, int idPartie)
     {
         databaseConnection.Open();
         var tableCmd = databaseConnection.CreateCommand();
@@ -148,7 +145,7 @@ public class DatabaseClass
         tableCmd.ExecuteNonQuery();
         databaseConnection.Close();
     }
-    public static void InsertValueIntoPartie(SqliteConnection databaseConnection, string nom)
+    public static void InsertValueIntoPartie(string nom)
     {
         databaseConnection.Open();
         var tableCmd = databaseConnection.CreateCommand();
@@ -159,7 +156,7 @@ public class DatabaseClass
         tableCmd.ExecuteNonQuery();
         databaseConnection.Close();
     }
-    public static List<Dictionary<string,object?>> ReadAllValueFromTable(SqliteConnection databaseConnection, string nomTable)
+    public static List<Dictionary<string,object?>> ReadAllValueFromTable(string nomTable)
     {
         var listeObjetDansTable = new List<Dictionary<string, object?>>();
         string SQLiteQuery = $"SELECT * FROM {nomTable}";
@@ -186,7 +183,7 @@ public class DatabaseClass
         return listeObjetDansTable;
     }
 
-    public static void DeleteValueFromTable(SqliteConnection databaseConnection, string table, int id)
+    public static void DeleteValueFromTable(string table, int id)
     {
         databaseConnection.Open();
         string SQLiteQuery = $"DELETE FROM {table} WHERE id = {id}";
@@ -198,7 +195,7 @@ public class DatabaseClass
         databaseConnection.Close();
     }
 
-    public static void UdpdateStringValueFromTable(SqliteConnection databaseConnection, string table, string colonne, int id, string newValue)
+    public static void UdpdateStringValueFromTable(string table, string colonne, int id, string newValue)
     {
         databaseConnection.Open();
         string SQLiteQuery = $"UPDATE {table} SET {colonne} = @{colonne} WHERE id = {id}";
@@ -211,5 +208,20 @@ public class DatabaseClass
         databaseConnection.Close();
     }
 
-
+    public static Dictionary<string,object?> ObtainValuesForId(string table, string id)
+    {
+        Dictionary<string, object?> ligneDesiree = new Dictionary<string,object?>();
+        List<Dictionary<string, object?>> donneesDansTable = DatabaseClass.ReadAllValueFromTable(table);
+        foreach (Dictionary<string, object?> ligneDansTable in donneesDansTable)
+        { 
+            foreach (var kvp in ligneDansTable)
+            {
+                if (ligneDansTable["id"].ToString() == id)  // ligneDansTable["id"] est de type objet et est impossible à tranformer en int pour égaliser avec un id de type int, mais tranformer les deux en string marche lol.
+                {
+                    ligneDesiree = ligneDansTable;
+                }
+            }
+        }
+        return ligneDesiree;
+    }
 }
