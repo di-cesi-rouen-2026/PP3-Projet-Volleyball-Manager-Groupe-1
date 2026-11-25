@@ -14,17 +14,17 @@ public class DatabaseClass
         var tableCmd = databaseConnection.CreateCommand();
         tableCmd.CommandText = @"CREATE TABLE IF NOT EXISTS PARTIE (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                                    nom VARCHAR(100) NOT NULL);
+                                    nom VARCHAR(100) NOT NULL)STRICT;
                                 CREATE TABLE IF NOT EXISTS TOURNOI (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     division VARCHAR(50) NOT NULL,
                                     id_partie INTEGER NOT NULL,
-                                    FOREIGN KEY (id_partie) REFERENCES PARTIE(id) ON DELETE CASCADE);
+                                    FOREIGN KEY (id_partie) REFERENCES PARTIE(id) ON DELETE CASCADE)STRICT;
                                 CREATE TABLE IF NOT EXISTS EQUIPE (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     nom VARCHAR(100) NOT NULL,
                                     ville_origine VARCHAR(100),
-                                    est_rival BOOLEAN DEFAULT 0);
+                                    est_rival BOOLEAN DEFAULT 0)STRICT;
                                 CREATE TABLE IF NOT EXISTS JOUEUR (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     nom VARCHAR(50) NOT NULL,
@@ -37,7 +37,7 @@ public class DatabaseClass
                                     prix DECIMAL(10,2) DEFAULT 0.00,
                                     note DECIMAL(3,1) DEFAULT 0.0,
                                     id_equipe INTEGER NULL,
-                                    FOREIGN KEY (id_equipe) REFERENCES EQUIPE(id) ON DELETE SET NULL);
+                                    FOREIGN KEY (id_equipe) REFERENCES EQUIPE(id) ON DELETE SET NULL)STRICT;
                                 CREATE TABLE IF NOT EXISTS COACH (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     nom VARCHAR(50) NOT NULL,
@@ -47,7 +47,7 @@ public class DatabaseClass
                                     boost_passe INTEGER DEFAULT 0,
                                     prix DECIMAL(10,2) DEFAULT 0.00,
                                     id_equipe INTEGER NULL,
-                                    FOREIGN KEY (id_equipe) REFERENCES EQUIPE(id) ON DELETE SET NULL);
+                                    FOREIGN KEY (id_equipe) REFERENCES EQUIPE(id) ON DELETE SET NULL)STRICT;
                                 CREATE TABLE IF NOT EXISTS MATCH (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     date_match DATE NOT NULL,
@@ -60,7 +60,7 @@ public class DatabaseClass
                                     id_equipe_exterieur INTEGER NOT NULL,
                                     FOREIGN KEY (id_tournoi) REFERENCES TOURNOI(id) ON DELETE CASCADE,
                                     FOREIGN KEY (id_equipe_domicile) REFERENCES EQUIPE(id),
-                                    FOREIGN KEY (id_equipe_exterieur) REFERENCES EQUIPE(id));";
+                                    FOREIGN KEY (id_equipe_exterieur) REFERENCES EQUIPE(id))STRICT;";
         tableCmd.ExecuteNonQuery();
         databaseConnection.Close();
     }
