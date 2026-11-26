@@ -1,0 +1,39 @@
+﻿<Window x:Class="VolleyballManagerInterface.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VolleyballManagerInterface"
+        mc:Ignorable="d"
+        Title="VolleyBall Manager" Height="616" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight">
+    <Grid Width="1000" Height="600" AutomationProperties.Name="1">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Background-Menu.png"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "50"/>
+            <RowDefinition Height = "50"/>
+            <RowDefinition Height ="*"/>
+            <RowDefinition Height = "50"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Name="BT_exit" Grid.Column="2" Content="QUITTER" HorizontalAlignment="Left" VerticalAlignment="Center" Width="126" Background="#FF252531" Foreground="Maroon" FontSize="15" BorderBrush="Maroon" Height="30" Style="{StaticResource BoutonApparence}" Margin="64,0,0,0"/>
+        <TextBlock Name="TB_title_P1" Grid.Column="1" Margin="0,20,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Height="40" Foreground="White" FontSize="30" HorizontalAlignment="Center"><Run Language="fr-fr" Text="SUPER VOLLEYBALL"/><LineBreak/><Run Language="fr-fr"/></TextBlock>
+        <TextBlock Name="TB_title_P2" Grid.Column="1" Margin="0,50,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Height="40" Foreground="#FF5058CC" FontSize="30" HorizontalAlignment="Center"><Run Language="fr-fr" Text="MANAGER 2026"/><LineBreak/><Run Language="fr-fr"/></TextBlock>
+        <Button Name="BT_new_game" Grid.Column="1" Grid.Row="2" Margin="0,-150,0,0" Content="NOUVELLE PARTIE" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" FontSize="15" Background="#CC8238" Foreground="White" BorderBrush="#895500" Height="30" Style="{StaticResource BoutonApparence}"/>
+        <Button Name="BT_resume_game" Grid.Column="1" Grid.Row="2" Margin="100,185,0,0" Content="REPRENDRE UNE PARTIE" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" FontSize="15" Background="#252531" Foreground="White" BorderBrush="Black" Height="30" Style="{StaticResource BoutonApparence}"/>
+        <Button Name="BT_create_coach" Grid.Column="1" Grid.Row="2" Margin="100,235,0,0" Content="CREATION COACH" HorizontalAlignment="Left" VerticalAlignment="Top" Width="175" FontSize="15" Background="#252531" Foreground="White" BorderBrush="Black" Height="30" Style="{StaticResource BoutonApparence}"/>
+        <Button Name="BT_create_player" Grid.Column="1" Grid.Row="2" Margin="325,235,100,0" Content="CREATION COACH" HorizontalAlignment="Left" VerticalAlignment="Top" Width="175" FontSize="15" Background="#252531" Foreground="White" BorderBrush="Black" Height="30" Style="{StaticResource BoutonApparence}"/>
+
+
+
+
+    </Grid>
+</Window>
